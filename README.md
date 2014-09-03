@@ -3,7 +3,7 @@ nodejs-redis-lua
 
 Redis Lua Scripting in Nodejs
 
-用 redis 儲存資料時，時常會遇到的一個情況是，要對 redis 連續下多次指令，這時候，每下一個指令就是一次的網路傳輸，當指令較多且執行頻繁時，將會影響效能，這時候就可以利用 lua 邊寫 script，將一組指令一次執行完畢。
+用 redis 儲存資料時，時常會遇到的一個情況是，要對 redis 連續下多次指令，這時候，每下一個指令就是一次的網路傳輸，當指令較多且執行頻繁時，將會影響效能，這時候就可以利用 lua 編寫 script，將一組指令一次執行完畢。
 
 如果遇到這個 script 比較大時，網路傳輸量也會變大，這時候還可以將 lua script 先 load 進 redis，redis 會回覆一個 SHA，之後要在重複執行這個 script 時，僅需要傳輸這個 SHA 與相關參數即可。
 
@@ -58,31 +58,31 @@ redisClient.evalsha(sha, 0, argv1, function(err, result) {});
 
 這邊會將建立的 20000 組 job 中的 duration 加總起來，分別用 js 去跑迴圈加總、用 lua script 去執行，分別執行 5 次的結果如下，可以看到 lua script 快了大約 8 ~ 9 倍左右！
 
-JS result: 200347421 duration: 549
-Lua result: 200347421 duration: 60
+JS result: 200347421 duration: 549           
+Lua result: 200347421 duration: 60           
 
-JS result: 200347421 duration: 518
-Lua result: 200347421 duration: 63
+JS result: 200347421 duration: 518           
+Lua result: 200347421 duration: 63           
 
-JS result: 200347421 duration: 513
-Lua result: 200347421 duration: 62
+JS result: 200347421 duration: 513           
+Lua result: 200347421 duration: 62           
 
-JS result: 200347421 duration: 565
-Lua result: 200347421 duration: 57
+JS result: 200347421 duration: 565           
+Lua result: 200347421 duration: 57           
 
-JS result: 200347421 duration: 524
-Lua result: 200347421 duration: 68
+JS result: 200347421 duration: 524           
+Lua result: 200347421 duration: 68           
 
 以上的結果是加總 20000 個 hash 欄位的結果，js 的部份會做 20000 次的網路傳輸，所以差距頗大，那如果只做 3 次指令傳輸的指令呢？其結果如下，沒有什麼差別。
 
-JS result: 39581 duration: 1
-Lua result: 39581 duration: 1
+JS result: 39581 duration: 1           
+Lua result: 39581 duration: 1           
 
-JS result: 39581 duration: 0
-Lua result: 39581 duration: 1
-
-JS result: 39581 duration: 1
-Lua result: 39581 duration: 1
+JS result: 39581 duration: 0           
+Lua result: 39581 duration: 1           
+           
+JS result: 39581 duration: 1           
+Lua result: 39581 duration: 1           
 
 以這個範例來說，大約要到 30 個指令傳輸以上才會有一點點差距。
 
