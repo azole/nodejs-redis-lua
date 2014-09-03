@@ -87,6 +87,7 @@ Lua result: 39581 duration: 1
 以這個範例來說，大約要到 30 個指令傳輸以上才會有一點點差距。
 
 
-<a href="http://tjholowaychuk.tumblr.com/post/19321054250/redis-lua-scripting-is-badass" target="_blank">http://www.oschina.net/translate/intro-to-lua-for-redis-programmers</a>
 
+參考資料：
+<a href="http://tjholowaychuk.tumblr.com/post/19321054250/redis-lua-scripting-is-badass" target="_blank">http://www.oschina.net/translate/intro-to-lua-for-redis-programmers</a>
 <a href="http://tjholowaychuk.tumblr.com/post/19321054250/redis-lua-scripting-is-badass" target="_blank">http://tjholowaychuk.tumblr.com/post/19321054250/redis-lua-scripting-is-badass</a>
