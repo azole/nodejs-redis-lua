@@ -56,7 +56,7 @@ redisClient.evalsha(sha, 0, argv1, function(err, result) {});
 
 範例2: 效能比較
 
-這邊會將建立的 20000 組 job 中的 duration 加總起來，分別用 js 去跑迴圈加總、用 lua script 去執行，分別執行 5 次的結果如下，可以看到 lua script 快了大約 8 ~ 9 倍左右！
+這邊會將建立的 20000 組 job 中的 duration 加總起來，分別用 js 去跑迴圈加總、用 lua script 去執行，分別執行 5 次的結果如下 (單位是 ms)，可以看到 lua script 快了大約 8 ~ 9 倍左右！
 
 JS result: 200347421 duration: 549           
 Lua result: 200347421 duration: 60           
